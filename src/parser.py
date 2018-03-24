@@ -29,10 +29,10 @@ def tokenToAtom(token):
         
 
 def tokensToTree(tokens):
-    token = tokens.pop(0)
-
     if(len(tokens) == 0):
         raise SyntaxError("tokensToTree: Reached end of input unexpectedly")
+
+    token = tokens.pop(0)
 
     # start a new expression which consists of a number of expressions
     if(token == "("):
@@ -61,3 +61,5 @@ def parse(program, verbosity):
 
     tree = tokensToTree(tokens)
     if VERBOSE_PARSER: print tree
+
+    return tree
