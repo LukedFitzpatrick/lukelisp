@@ -8,6 +8,22 @@ def getStandardEnv():
     standardEnv['*'] = lambda x,y:x*y
     standardEnv['/'] = lambda x,y:x/y
 
+    standardEnv['>'] = lambda x,y:x>y
+    standardEnv['<'] = lambda x,y:x<y
+    standardEnv['>='] = lambda x,y:x>=y
+    standardEnv['<='] = lambda x,y:x<=y
+
+    standardEnv['='] = lambda x,y:x==y
+    
+    standardEnv['not'] = lambda x:not x
+    standardEnv['and'] = lambda x,y:x and y
+    standardEnv['or'] = lambda x,y:x and y
+
+    standardEnv['t'] = True
+    standardEnv['true'] = True
+    standardEnv['f'] = False
+    standardEnv['false'] = False
+    
     standardEnv['pi'] = 3.1415
     
     return standardEnv
