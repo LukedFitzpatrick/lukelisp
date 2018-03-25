@@ -23,6 +23,10 @@ def getStandardEnv():
     standardEnv['true'] = True
     standardEnv['f'] = False
     standardEnv['false'] = False
+
+    standardEnv["str"] = lambda x: str(x)
+    standardEnv["int"] = lambda x: int(x)
+    standardEnv["float"] = lambda x: float(x)
     
     standardEnv['pi'] = 3.1415
     

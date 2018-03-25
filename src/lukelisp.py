@@ -33,11 +33,12 @@ def runFile(fileName):
 
     env = getStandardEnv()
     for line in program:
-        ast = parse(line, (args.verbose_tokeniser, args.verbose_parser))
-        result = evaluate(ast, env)
+        if(line[0] != "#"):
+            ast = parse(line, (args.verbose_tokeniser, args.verbose_parser))
+            result = evaluate(ast, env)
 
-        if isinstance(result, PrintVal):
-            print result
+            if isinstance(result, PrintVal):
+                print result.value
     
 
 if(args.i):

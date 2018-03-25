@@ -1,6 +1,8 @@
 from parser import SymbolToken
 
-PrintVal = str
+class PrintVal:
+    def __init__(self, val):
+        self.value = val
 
 # evaluate an expression with a given environment
 # todo error checking/messages
@@ -8,7 +10,7 @@ PrintVal = str
 def evaluate(ast, env):
     if isinstance(ast, SymbolToken):
         if not ast.value in env:
-            raise SyntaxError("evaluate: %s is undefined" % ast)
+            raise SyntaxError("evaluate: %s is undefined" % ast.value)
         else:
             return env[ast.value]
 
@@ -34,7 +36,6 @@ def evaluate(ast, env):
                return str(ast[1]) + "=" + str(value)
             else:
                raise SyntaxError("Tried to assign to a non-symbol") 
-
 
         # special form: print
         elif (ast[0].value  == "print"):
