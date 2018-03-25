@@ -6,12 +6,24 @@ class SymbolToken:
 
 # turn a program string into a list of tokens
 def tokenise(program):
-    # todo learn regex properly and make this a one liner
-    program = re.sub("\(", " ( ", program)
-    program = re.sub("\)", " ) ", program)
+    tokens = []
+    thisToken = ""
     
-    return program.split()
+    while(len(program) > 0):
+        thisChar = program[0]
+        program = program[1:]
 
+        if(thisChar in (" ", "(", ")")):
+            if(len(thisToken) > 0):
+                tokens.append(thisToken)
+                thisToken = ""
+            if(thisChar != " "):
+                tokens.append(thisChar)
+                
+        else:
+            thisToken += thisChar
+
+    return tokens
 
 def tokenToAtom(token):
     # Int atom
@@ -26,8 +38,9 @@ def tokenToAtom(token):
     except ValueError:
         pass
 
-    if(token[0] == '"' and token[-1] == '"'):
-        return str(token[1:-1])
+    if(len(token) > 1):
+        if(token[0] == '"' and token[-1] == '"'):
+            return str(token[1:-1])
     
     # variable/function name (symbol) atom
     return SymbolToken(token)
