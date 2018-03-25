@@ -1,5 +1,9 @@
 import re
 
+class SymbolToken:
+    def __init__(self, val):
+        self.value = val
+
 # turn a program string into a list of tokens
 def tokenise(program):
     # todo learn regex properly and make this a one liner
@@ -22,11 +26,11 @@ def tokenToAtom(token):
     except ValueError:
         pass
 
-    # todo add string/list atom?
+    if(token[0] == '"' and token[-1] == '"'):
+        return str(token[1:-1])
     
     # variable/function name (symbol) atom
-    return str(token)
-        
+    return SymbolToken(token)
 
 def tokensToTree(tokens):
     if(len(tokens) == 0):

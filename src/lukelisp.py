@@ -37,7 +37,7 @@ def runFile(fileName):
         result = evaluate(ast, env)
 
         if isinstance(result, PrintVal):
-            print result.value
+            print result
     
 
 if(args.i):
