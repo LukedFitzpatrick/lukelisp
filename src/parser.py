@@ -8,12 +8,27 @@ class SymbolToken:
 def tokenise(program):
     tokens = []
     thisToken = ""
+    inQuote = False
     
     while(len(program) > 0):
         thisChar = program[0]
         program = program[1:]
 
-        if(thisChar in (" ", "(", ")")):
+        if(thisChar == '"'):
+            if inQuote:
+                thisToken += thisChar
+                if(len(thisToken) > 0):
+                    tokens.append(thisToken)
+                thisToken = ""
+                inQuote = False
+            else:
+                if(len(thisToken) > 0):
+                    tokens.append(thisToken)
+                thisToken = thisChar
+                inQuote = True
+                
+            
+        elif(thisChar in (" ", "(", ")") and not inQuote):
             if(len(thisToken) > 0):
                 tokens.append(thisToken)
                 thisToken = ""

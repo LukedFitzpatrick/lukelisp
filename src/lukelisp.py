@@ -22,7 +22,11 @@ def runRepl():
     while(True):
         program = raw_input("LukeLisp: ")
         ast = parse(program, (args.verbose_tokeniser, args.verbose_parser))
-        print evaluate(ast, env)
+        result = evaluate(ast, env)
+        if isinstance(result, PrintVal):
+            print result.value
+        else:
+            print result
 
 
 def runFile(fileName):
