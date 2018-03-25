@@ -26,8 +26,6 @@ def runRepl():
 
 
 def runFile(fileName):
-    print "Evaluating file " + fileName
-    
     with open(args.file_name, 'r') as inputFile:
         program = inputFile.readlines()
 
